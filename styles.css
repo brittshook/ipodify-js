@@ -1,0 +1,119 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+body,
+html,
+#ipodify-home,
+#ipod-body,
+#main-body,
+#screen,
+#controls img {
+  width: 100%;
+  height: 100%;
+}
+
+:root {
+  --orange: linear-gradient(
+    270deg,
+    #481700 0%,
+    #a6420e 4%,
+    #fbba35 32.08%,
+    #faa109 56.44%,
+    #cb5d00 76.71%,
+    #4d260e 100%
+  );
+}
+
+#ipod {
+  position: relative;
+  width: 238px;
+  height: 544px;
+  margin: 0 auto;
+}
+
+#ipod-body {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-shadow: -52.5px 6px 6px 0px rgba(0, 0, 0, 0.1) inset;
+}
+
+#top-body {
+  height: 1%;
+  width: 100%;
+  border-radius: 60% 60% 0 0;
+}
+
+#top-body,
+#main-body {
+  background: var(
+    --orange,
+    linear-gradient(
+      270deg,
+      #481700 0%,
+      #a6420e 4%,
+      #fbba35 32.08%,
+      #faa109 56.44%,
+      #cb5d00 76.71%,
+      #4d260e 100%
+    )
+  );
+}
+
+#main-body {
+  display: flex;
+  padding: 16.5px 0 0;
+  flex-direction: column;
+  align-items: center;
+}
+
+#screen-wrapper {
+  width: 87.39%;
+  height: 55.88%;
+  display: flex;
+  padding: 12px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7.5px;
+  background: linear-gradient(
+    90deg,
+    #070002 0%,
+    #484b47 45.61%,
+    #5d6462 71%,
+    #000100 78.5%,
+    #060102 100%
+  );
+}
+
+#screen {
+  background-color: #fff;
+}
+
+#controls {
+  position: absolute;
+  width: 165px;
+  height: 163.5px;
+  bottom: 30px;
+  right: 36px;
+}
+
+#controls button {
+  position: absolute;
+  top: 10px;
+  left: 38%;
+}
+
+#status-bar {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  width: 100%;
+  height: 7%;
+  max-height: 15px;
+  border-bottom: 1px solid #9a999c;
+  background: linear-gradient(180deg, #f7f5f6 0%, #c1c1c1 100%);
+}

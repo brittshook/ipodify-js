@@ -1,12 +1,106 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <script type="module" src="" defer></script>
+    <title>iPodify</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="main.js" defer></script>
   </head>
   <body>
-    <button type="button">Log In with Spotify</button>
+    <div id="main"></div>
+    <div id="oauth"></div>
+    <template id="login">
+      <h1>iPodify</h1>
+      <h2>Hey music lover!</h2>
+      <p>
+        Take a trip down memory lane and bring back the magic of your Spotify
+        playlists with the charm of an iPod Nano
+      </p>
+      <button id="login-button" data-bind-onclick="loginWithSpotifyClick();">
+        Log in with Spotify
+      </button>
+    </template>
+
+    <template id="ipodify-home">
+      <div id="tips"></div>
+      <div id="ipod">
+        <div id="ipod-body">
+          <div id="top-body"></div>
+          <div id="main-body">
+            <div id="screen-wrapper">
+              <div id="screen">
+                <div id="status-bar">
+                  iPod <img src="" alt="battery level" />
+                </div>
+                <div class="screen-content">
+                  <div class="option">Songs</div>
+                  <div class="option">Artists</div>
+                  <div class="option">Podcasts</div>
+                  <div class="option">Playlists</div>
+                  <div class="option">Radio</div>
+                  <div class="option">Settings</div>
+                  <div class="option">Shuffle Songs</div>
+                  <div class="album-covers">
+                    <img class="album" />
+                    <img class="album" />
+                    <img class="album" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="controls">
+          <button>Home</button>
+          <img src="./imgs/controls.png" />
+          <button></button>
+          <button></button>
+          <button></button>
+        </div>
+      </div>
+      <div id="color-settings"></div>
+      <h1>Logged in as <span data-bind="display_name"></span></h1>
+      <button
+        id="refresh-token-button"
+        data-bind-onclick="refreshTokenClick();"
+      >
+        Refresh Token
+      </button>
+      <button id="logout-button" data-bind-onclick="logoutClick();">
+        Log out
+      </button>
+    </template>
+
+    <template id="screen-home-template">
+      <div class="option">Top Songs</div>
+      <div class="option">Top Artists</div>
+      <div class="option">Top Podcasts</div>
+      <div class="option">Playlists</div>
+      <div class="option">Radio</div>
+      <div class="option">Settings</div>
+      <div class="option">Shuffle Songs</div>
+      <div class="album-covers">
+        <img class="album" />
+        <img class="album" />
+        <img class="album" />
+      </div>
+    </template>
+
+    <template id="oauth-template">
+      <h2>oAuth info</h2>
+      <table>
+        <tr>
+          <td>Access token</td>
+          <td data-bind="access_token"></td>
+        </tr>
+        <tr>
+          <td>Refresh token</td>
+          <td data-bind="refresh_token"></td>
+        </tr>
+        <tr>
+          <td>Expiration at</td>
+          <td data-bind="expires">${getExpirationDate(expires_in)}</td>
+        </tr>
+      </table>
+    </template>
   </body>
 </html>
