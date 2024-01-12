@@ -16,7 +16,8 @@ async function getTopTracks() {
   }
 }
 
-export const topTracks = await getTopTracks();
+const topTracksObj = await getTopTracks();
+export const topTracks = topTracksObj.items;
 
 async function getTopArtists() {
   try {
@@ -31,4 +32,5 @@ async function getTopArtists() {
   }
 }
 
-export const topArtists = await getTopArtists();
+const topArtistsObj = await getTopArtists();
+export const topArtists = topArtistsObj.items;
