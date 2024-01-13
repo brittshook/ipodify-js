@@ -3,48 +3,59 @@
   <head>
     <title>iPodify</title>
     <link rel="stylesheet" href="./styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <script type="module" src="main.js" defer></script>
-  </head>
-  <body>
-    <div id="main"></div>
-    <div id="oauth"></div>
-    <template id="login">
-      <h1>iPodify</h1>
-      <h2>Hey music lover!</h2>
-      <p>
-        Take a trip down memory lane and bring back the magic of your Spotify
-        playlists with the charm of an iPod Nano
-      </p>
-      <button id="login-button" data-bind-onclick="loginWithSpotifyClick();">
-        Log in with Spotify
-      </button>
-    </template>
-
+    <script type="module" src="modules/iPodColor.js" defer></script>
+        <!-- Login template -->
+        <template id="login">
+          <h1>iPodify</h1>
+          <h2>Hey music lover!</h2>
+          <p>
+            Take a trip down memory lane and bring back the magic of your Spotify
+            playlists with the charm of an iPod Nano
+          </p>
+          <button id="login-button" data-bind-onclick="handleAuth()">Log in with Spotify</button>
+        </template>
+        <template id="oauth-template">
+          <h1>Logged in as <span data-bind="display_name"></span></h1>
+          <h2>oAuth info</h2>
+          <table>
+            <tr>
+              <td>Access token</td>
+              <td data-bind="access_token"></td>
+            </tr>
+            <tr>
+              <td>Refresh token</td>
+              <td data-bind="refresh_token"></td>
+            </tr>
+            <tr>
+              <td>Expiration at</td>
+              <td data-bind="expires">${getExpirationDate(expires_in)}</td>
+            </tr>
+          </table>
+        </template>
     <template id="ipodify-home">
       <div id="tips"></div>
       <div id="ipod">
         <div id="ipod-body">
-          <div id="top-body"></div>
-          <div id="main-body">
+          <div id="top-body" class="red"></div>
+          <div id="main-body" class="red">
             <div id="screen-wrapper">
               <div id="screen">
                 <div id="status-bar">
-                  iPod <img src="" alt="battery level" />
+                  iPod
+                  <img
+                    class="battery"
+                    src="imgs/battery.svg"
+                    alt="battery level"
+                  />
                 </div>
-                <div class="screen-content">
-                  <div class="option">Songs</div>
-                  <div class="option">Artists</div>
-                  <div class="option">Podcasts</div>
-                  <div class="option">Playlists</div>
-                  <div class="option">Radio</div>
-                  <div class="option">Settings</div>
-                  <div class="option">Shuffle Songs</div>
-                  <div class="album-covers">
-                    <img class="album" />
-                    <img class="album" />
-                    <img class="album" />
-                  </div>
-                </div>
+                <div id="screen-content">
               </div>
             </div>
           </div>
@@ -57,50 +68,55 @@
           <button></button>
         </div>
       </div>
-      <div id="color-settings"></div>
-      <h1>Logged in as <span data-bind="display_name"></span></h1>
+      <div id="color-settings">
+        <button class="red" data-bind-onclick="setIpodColor(e);"></button>
+        <button class="orange" data-bind-onclick="setIpodColor(e);"></button>
+        <button class="yellow" data-bind-onclick="setIpodColor(e);"></button>
+        <button class="green" data-bind-onclick="setIpodColor(e);"></button>
+        <button class="blue" data-bind-onclick="setIpodColor(e);"></button>
+        <button class="pink" data-bind-onclick="setIpodColor(e);"></button>
+        <button class="purple" data-bind-onclick="setIpodColor(e);"></button>
+        <button class="gray" data-bind-onclick="setIpodColor(e);"></button>
+      </div>
       <button
         id="refresh-token-button"
-        data-bind-onclick="refreshTokenClick();"
+        data-bind-onclick="getRefreshToken()"
       >
         Refresh Token
       </button>
-      <button id="logout-button" data-bind-onclick="logoutClick();">
+      <button id="logout-button" data-bind-onclick="logout()">
         Log out
       </button>
     </template>
 
-    <template id="screen-home-template">
-      <div class="option">Top Songs</div>
-      <div class="option">Top Artists</div>
-      <div class="option">Top Podcasts</div>
+    <!-- Screen templates -->
+    <template id="home-screen">
+      <div class="option">Songs</div>
+      <div class="option">Artists</div>
+      <div class="option">Podcasts</div>
       <div class="option">Playlists</div>
       <div class="option">Radio</div>
       <div class="option">Settings</div>
       <div class="option">Shuffle Songs</div>
-      <div class="album-covers">
-        <img class="album" />
-        <img class="album" />
-        <img class="album" />
+      <div id="slider">
+        <div id="slide-track">
+          <img data-bind-src="album0" />
+          <img data-bind-src="album1" />
+          <img data-bind-src="album2" />
+          <img data-bind-src="album3" />
+          <img data-bind-src="album4" />
+          <img data-bind-src="album5" />
+          <img data-bind-src="album6" />
+          <img data-bind-src="album7" />
+          <img data-bind-src="album8" />
+          <img data-bind-src="album9" />
+      </div>
       </div>
     </template>
 
-    <template id="oauth-template">
-      <h2>oAuth info</h2>
-      <table>
-        <tr>
-          <td>Access token</td>
-          <td data-bind="access_token"></td>
-        </tr>
-        <tr>
-          <td>Refresh token</td>
-          <td data-bind="refresh_token"></td>
-        </tr>
-        <tr>
-          <td>Expiration at</td>
-          <td data-bind="expires">${getExpirationDate(expires_in)}</td>
-        </tr>
-      </table>
-    </template>
+  </head>
+  <body>
+    <div id="main"></div>
+    <div id="oauth"></div>
   </body>
 </html>
