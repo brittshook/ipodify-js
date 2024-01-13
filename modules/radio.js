@@ -1,7 +1,13 @@
-import { topArtists, topTracks } from "./topItems.js";
+import { getTopArtists, getTopTracks } from "./topItems.js";
 import { currentToken } from "./token.js";
 
 const recommendationsEndpoint = "https://api.spotify.com/v1/recommendations";
+
+const topTracksObj = await getTopTracks();
+const topTracks = topTracksObj.items;
+const topArtistsObj = await getTopArtists();
+const topArtists = topArtistsObj.items;
+
 const seedTracks = topTracks
   .slice(0, 3)
   .map((item) => item.id)
@@ -11,7 +17,7 @@ const seedArtists = topArtists
   .map((item) => item.id)
   .join(",");
 
-async function getRadioTracks() {
+export async function getRadioTracks() {
   const params = {
     limit: 50,
     seed_tracks: seedTracks,
@@ -29,6 +35,3 @@ async function getRadioTracks() {
 
   return await response.json();
 }
-
-const radioTracksObj = await getRadioTracks();
-export const radioTracks = radioTracksObj.tracks;

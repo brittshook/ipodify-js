@@ -3,7 +3,7 @@ import { currentToken } from "./token.js";
 const topTracksEndpoint = "https://api.spotify.com/v1/me/top/tracks";
 const topArtistsEndpoint = "https://api.spotify.com/v1/me/top/artists";
 
-async function getTopTracks() {
+export async function getTopTracks() {
   try {
     const response = await fetch(topTracksEndpoint, {
       method: "GET",
@@ -16,10 +16,7 @@ async function getTopTracks() {
   }
 }
 
-const topTracksObj = await getTopTracks();
-export const topTracks = topTracksObj.items;
-
-async function getTopArtists() {
+export async function getTopArtists() {
   try {
     const response = await fetch(topArtistsEndpoint, {
       method: "GET",
@@ -31,6 +28,3 @@ async function getTopArtists() {
     console.log(error);
   }
 }
-
-const topArtistsObj = await getTopArtists();
-export const topArtists = topArtistsObj.items;

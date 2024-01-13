@@ -1,6 +1,7 @@
 import { currentToken } from "./token.js";
-import { userData } from "./user.js";
+import { getUserData } from "./user.js";
 
+const userData = await getUserData();
 const userId = userData.id;
 console.log(userId);
 const userPlaylistsEndpoint = `https://api.spotify.com/v1/users/${userId}/playlists/`;
