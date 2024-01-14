@@ -1,13 +1,39 @@
-import { currentToken } from "./token.js";
+import { currentToken } from "./auth/token.js";
+import { displayList } from "./list.js";
 
 const userPodcastsEndpoint = "https://api.spotify.com/v1/me/shows";
 
 export async function getPodcasts() {
-  const response = await fetch(userPodcastsEndpoint, {
-    method: "GET",
-    headers: { Authorization: "Bearer " + currentToken.access_token },
-  });
+  try {
+    const params = {
+      limit: 50,
+    };
+
+    const url = new URL(userPodcastsEndpoint);
+    url.search = new URLSearchParams(params);
+
+    const response = await fetch(url, {
+      method: "GET",
+      headers: { Authorization: "Bearer " + currentToken.access_token },
+    });
+  } catch (er) {
+    console.log("Error fetching podcasts:", er);
+  }
 
   return await response.json();
 }
 
+export async function displayPodcasts() {
+  const userPodcastsObj = await getPodcasts();
+  const userPodcasts = userPodcastsObj.items;
+
+  let podcasts = [];
+  let eventHandlers = [];
+
+  for (const podcast of userPodcasts) {
+    podcasts.push(podcast.show.name);
+    eventHandlers.push(() => console.log(podcast.show));
+  }
+
+  displayList(podcasts, eventHandlers);
+}
