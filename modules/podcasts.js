@@ -16,11 +16,13 @@ export async function getPodcasts() {
       method: "GET",
       headers: { Authorization: "Bearer " + currentToken.access_token },
     });
+
+    return await response.json();
   } catch (er) {
     console.log("Error fetching podcasts:", er);
   }
 
-  return await response.json();
+
 }
 
 export async function displayPodcasts() {

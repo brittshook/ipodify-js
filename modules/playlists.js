@@ -10,23 +10,23 @@ const playlistItemsEndpoint = (playlist) =>
   `https://api.spotify.com/v1/playlists/${playlist.id}/tracks`;
 
 export async function getPlaylists() {
+  const params = {
+    limit: 50,
+  };
+
+  const url = new URL(userPlaylistsEndpoint);
+  url.search = new URLSearchParams(params);
+
   try {
-    const params = {
-      limit: 50,
-    };
-
-    const url = new URL(userPlaylistsEndpoint);
-    url.search = new URLSearchParams(params);
-
     const response = await fetch(url, {
       method: "GET",
       headers: { Authorization: "Bearer " + currentToken.access_token },
     });
+
+    return await response.json();
   } catch (er) {
     console.log("Error fetching playlists:", er);
   }
-
-  return await response.json();
 }
 
 export async function getPlaylistItems(playlist, offset = 0) {
@@ -74,11 +74,11 @@ export async function createPlaylist(playlistName, playlistDescription) {
         public: false,
       }),
     });
+
+    return await response.json();
   } catch (er) {
     console.log("Error creating playlist:", er);
   }
-
-  return await response.json();
 }
 
 export async function addPlaylistItems(playlist, trackArr) {
@@ -100,11 +100,11 @@ export async function addPlaylistItems(playlist, trackArr) {
         uris: itemURIs,
       }),
     });
+
+    return await response.json();
   } catch (er) {
     console.log("Error adding playlist items:", er);
   }
-
-  return await response.json();
 }
 
 export async function displayPlaylists() {

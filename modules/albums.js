@@ -16,13 +16,14 @@ export async function getAlbumsByArtist(artist) {
       method: "GET",
       headers: { Authorization: "Bearer " + currentToken.access_token },
     });
+
+    const albumsObj = await response.json();
+
   } catch (er) {
     console.log("Error fetching albums by artist:", er);
   }
 
-  const albumsObj = await response.json();
   const albums = albumsObj.albums.items;
-
   return albums;
 }
 

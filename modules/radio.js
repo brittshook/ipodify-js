@@ -18,26 +18,26 @@ const seedArtists = topArtists
   .join(",");
 
 export async function getRadioTracks() {
-  const params = {
-    limit: 50,
-    seed_tracks: seedTracks,
-    seed_artists: seedArtists,
-    max_instrumentalness: 0.35,
-  };
-
-  const url = new URL(recommendationsEndpoint);
-  url.search = new URLSearchParams(params);
-
   try {
+    const params = {
+      limit: 50,
+      seed_tracks: seedTracks,
+      seed_artists: seedArtists,
+      max_instrumentalness: 0.35,
+    };
+
+    const url = new URL(recommendationsEndpoint);
+    url.search = new URLSearchParams(params);
+
     const response = await fetch(url, {
       method: "GET",
       headers: { Authorization: "Bearer " + currentToken.access_token },
     });
+
+    return await response.json();
   } catch (er) {
     console.log("Error fetching recommended items:", er);
   }
-
-  return await response.json();
 }
 
 export function startRadio() {}
