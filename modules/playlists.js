@@ -10,17 +10,21 @@ const playlistItemsEndpoint = (playlist) =>
   `https://api.spotify.com/v1/playlists/${playlist.id}/tracks`;
 
 export async function getPlaylists() {
-  const params = {
-    limit: 50,
-  };
+  try {
+    const params = {
+      limit: 50,
+    };
 
-  const url = new URL(userPlaylistsEndpoint);
-  url.search = new URLSearchParams(params);
+    const url = new URL(userPlaylistsEndpoint);
+    url.search = new URLSearchParams(params);
 
-  const response = await fetch(url, {
-    method: "GET",
-    headers: { Authorization: "Bearer " + currentToken.access_token },
-  });
+    const response = await fetch(url, {
+      method: "GET",
+      headers: { Authorization: "Bearer " + currentToken.access_token },
+    });
+  } catch (er) {
+    console.log("Error fetching playlists:", er);
+  }
 
   return await response.json();
 }
@@ -57,18 +61,22 @@ export async function getPlaylistItems(playlist, offset = 0) {
 }
 
 export async function createPlaylist(playlistName, playlistDescription) {
-  const response = await fetch(userPlaylistsEndpoint, {
-    method: "POST",
-    headers: {
-      Authorization: "Bearer " + currentToken.access_token,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      name: playlistName,
-      description: playlistDescription,
-      public: false,
-    }),
-  });
+  try {
+    const response = await fetch(userPlaylistsEndpoint, {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + currentToken.access_token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: playlistName,
+        description: playlistDescription,
+        public: false,
+      }),
+    });
+  } catch (er) {
+    console.log("Error creating playlist:", er);
+  }
 
   return await response.json();
 }
@@ -81,18 +89,20 @@ export async function addPlaylistItems(playlist, trackArr) {
         `spotify:${item.type == "track" ? "track" : "episode"}:${item.id}`
     );
 
-  console.log(JSON.stringify({ uris: itemURIs }));
-
-  const response = await fetch(playlistItemsEndpoint(playlist), {
-    method: "POST",
-    headers: {
-      Authorization: "Bearer " + currentToken.access_token,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      uris: itemURIs,
-    }),
-  });
+  try {
+    const response = await fetch(playlistItemsEndpoint(playlist), {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + currentToken.access_token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        uris: itemURIs,
+      }),
+    });
+  } catch (er) {
+    console.log("Error adding playlist items:", er);
+  }
 
   return await response.json();
 }

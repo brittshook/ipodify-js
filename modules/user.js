@@ -9,6 +9,6 @@ export async function getUserData() {
 
     return await response.json();
   } catch (er) {
-    console.log(er);
+    console.log("Error fetching user data:", er);
   }
 }

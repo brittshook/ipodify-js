@@ -28,10 +28,14 @@ export async function getRadioTracks() {
   const url = new URL(recommendationsEndpoint);
   url.search = new URLSearchParams(params);
 
-  const response = await fetch(url, {
-    method: "GET",
-    headers: { Authorization: "Bearer " + currentToken.access_token },
-  });
+  try {
+    const response = await fetch(url, {
+      method: "GET",
+      headers: { Authorization: "Bearer " + currentToken.access_token },
+    });
+  } catch (er) {
+    console.log("Error fetching recommended items:", er);
+  }
 
   return await response.json();
 }
