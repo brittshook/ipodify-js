@@ -1,5 +1,5 @@
-import { getTopArtists, getTopTracks } from "./topItems.js";
-import { currentToken } from "./token.js";
+import { getTopArtists, getTopTracks } from "../topItems.js";
+import { currentToken } from "./auth/token.js";
 
 const recommendationsEndpoint = "https://api.spotify.com/v1/recommendations";
 
@@ -35,3 +35,5 @@ export async function getRadioTracks() {
 
   return await response.json();
 }
+
+export function startRadio() {}

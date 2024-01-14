@@ -1,4 +1,4 @@
-import { currentToken } from "./token.js";
+import { currentToken } from "./auth/token.js";
 
 const searchEndpoint = "https://api.spotify.com/v1/search";
 

@@ -1,4 +1,4 @@
-import { currentToken } from "./token.js";
+import { currentToken } from "./auth/token.js";
 
 export async function getUserData() {
   try {
