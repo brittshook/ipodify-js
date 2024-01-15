@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>iPodify Home</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script type="module" src="./events/ipodifyHome.js" defer></script>
+    <template id="ipod-menu"
+      ><div id="songs" class="option">Songs</div>
+      <div id="artists" class="option">Artists</div>
+      <div id="podcasts" class="option">Podcasts</div>
+      <div id="playlists" class="option">Playlists</div>
+      <div class="option">Radio</div>
+      <div class="option">Settings</div>
+      <div class="option">Shuffle Songs</div>
+      <div id="slider">
+        <div id="slide-track">
+          <img />
+          <img />
+          <img />
+          <img />
+          <img />
+          <img />
+          <img />
+          <img />
+          <img />
+          <img />
+        </div>
+      </div>
+    </template>
+    <template id="ipod-list">
+      <div class="option"><span class="text"></span></div>
+      <div class="option"><span class="text"></span></div>
+      <div class="option"><span class="text"></span></div>
+      <div class="option"><span class="text"></span></div>
+      <div class="option"><span class="text"></span></div>
+      <div class="option"><span class="text"></span></div>
+      <div class="option"><span class="text"></span></div>
+      <div class="option"><span class="text"></span></div>
+      <div class="option"><span class="text"></span></div>
+      <div class="option"><span class="text"></span></div>
+      <div class="option"><span class="text"></span></div>
+      <div class="option"><span class="text"></span></div>
+      <div class="option"><span class="text"></span></div>
+      <div class="option"><span class="text"></span></div>
+      <div class="option"><span class="text"></span></div>
+      <div class="option"><span class="text"></span></div>
+      <div class="option"><span class="text"></span></div>
+      <div class="option"><span class="text"></span></div>
+      <div class="option"><span class="text"></span></div>
+      <div class="option"><span class="text"></span></div>
+    </template>
+  </head>
+  <body>
+    <div id="ipod">
+      <div id="ipod-body">
+        <div id="top-body" class="red"></div>
+        <div id="main-body" class="red">
+          <div id="screen-wrapper">
+            <div id="screen">
+              <div id="status-bar">
+                iPod
+                <svg
+                  width="20"
+                  height="7"
+                  viewBox="0 0 13 5"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1 1V4H11V2.5V1H1Z"
+                    fill="url(#paint0_linear_7_198)"
+                  />
+                  <path
+                    d="M11 2.5V1H1V4H11V2.5ZM11 2.5H12.5"
+                    stroke="#90978A"
+                  />
+                  <defs>
+                    <linearGradient
+                      id="paint0_linear_7_198"
+                      x1="6.5"
+                      y1="1"
+                      x2="6.5"
+                      y2="4"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop stop-color="#B9D3AF" />
+                      <stop offset="1" stop-color="#8DAC84" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+              <div id="screen-content">
+                <div id="songs" class="option">Songs</div>
+                <div id="artists" class="option">Artists</div>
+                <div id="podcasts" class="option">Podcasts</div>
+                <div id="playlists" class="option">Playlists</div>
+                <div class="option">Radio</div>
+                <div class="option">Settings</div>
+                <div class="option">Shuffle Songs</div>
+                <div id="slider">
+                  <div id="slide-track">
+                    <img />
+                    <img />
+                    <img />
+                    <img />
+                    <img />
+                    <img />
+                    <img />
+                    <img />
+                    <img />
+                    <img />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="controls">
+          <button id="menu" type="button">MENU</button>
+          <svg
+            width="166"
+            height="165"
+            viewBox="0 0 166 165"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M83.3912 164.033C128.913 164.033 165.815 127.466 165.815 82.3582C165.815 37.2503 128.913 0.683228 83.3912 0.683228C37.8695 0.683228 0.966919 37.2503 0.966919 82.3582C0.966919 127.466 37.8695 164.033 83.3912 164.033ZM83.3912 123.57C106.566 123.57 125.353 105.119 125.353 82.3582C125.353 59.5973 106.566 41.146 83.3912 41.146C60.2165 41.146 41.4297 59.5973 41.4297 82.3582C41.4297 105.119 60.2165 123.57 83.3912 123.57Z"
+            />
+          </svg>
+          <button type="button" id="play">
+            <svg
+              width="39"
+              height="18"
+              viewBox="0 0 39 18"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              class="sc-dFJtaz dNbBPV"
+            >
+              <path d="M18 9L4.5 16.7942L4.5 1.20577L18 9Z"></path>
+              <rect x="26" y="1" width="4" height="16"></rect>
+              <rect x="35" y="1" width="4" height="16"></rect>
+            </svg>
+          </button>
+          <button type="button" id="back">
+            <svg
+              width="33"
+              height="16"
+              viewBox="0 0 33 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              class="sc-dFJtaz bIjbUR"
+            >
+              <path d="M17 8L29 1.0718V14.9282L17 8Z"></path>
+              <path d="M4 8L16 1.0718V14.9282L4 8Z"></path>
+              <rect
+                x="4"
+                y="16"
+                width="4"
+                height="15"
+                transform="rotate(-180 4 16)"
+              ></rect>
+            </svg>
+          </button>
+          <button type="button" id="forward">
+            <svg
+              width="33"
+              height="16"
+              viewBox="0 0 33 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              class="sc-dFJtaz bIjatx"
+            >
+              <path d="M16 8L4 14.9282L4 1.0718L16 8Z"></path>
+              <path d="M29 8L17 14.9282V1.0718L29 8Z"></path>
+              <rect x="29" width="4" height="15"></rect>
+            </svg>
+          </button>
+          <button type="button" id="select"></button>
+        </div>
+        <div id="bottom-body" class="red"></div>
+      </div>
+      <div id="color-settings">
+        <button class="red"></button>
+        <button class="orange"></button>
+        <button class="yellow"></button>
+        <button class="green"></button>
+        <button class="blue"></button>
+        <button class="pink"></button>
+        <button class="purple"></button>
+        <button class="gray"></button>
+      </div>
+      <button id="logout">Log out</button>
+    </div>
+  </body>
+</html>

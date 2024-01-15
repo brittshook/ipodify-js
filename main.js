@@ -1,8 +1,6 @@
-import { renderTemplate } from "./modules/template.js";
 import { currentToken } from "./modules/auth/token.js";
-import { getUserData } from "./modules/user.js";
 import { getToken, refreshToken } from "./modules/auth/auth.js";
-import { displaySliderItems } from "./modules/slider.js";
+import { goToMenu } from "./modules/navigate.js";
 
 const args = new URLSearchParams(window.location.search);
 const code = args.get("code");
@@ -24,13 +22,7 @@ if (currentToken.access_token && currentToken.isExpired()) {
 }
 
 if (currentToken.access_token) {
-  const userData = await getUserData();
-
-  renderTemplate("main", "ipodify-home", userData);
-  renderTemplate("screen-content", "home-screen");
-  displaySliderItems();
-} else if (!currentToken.access_token) {
-  renderTemplate("main", "login");
+  window.open("./ipodify.html", "_self");
 }
 
 setInterval(() => {
