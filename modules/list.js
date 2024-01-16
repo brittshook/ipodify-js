@@ -1,7 +1,9 @@
-import { renderTemplate } from "./template.js";
-
-export function displayList(itemArr, eventHandlerArr) {
-  renderTemplate("screen-content", "list-screen");
+export async function displayList(itemArr, eventHandlerArr) {
+  const listTemplate = document.querySelector("#ipod-list");
+  const templateContent = listTemplate.content.cloneNode(true);
+  const screenContent = document.querySelector("#screen-content");
+  screenContent.innerHTML = "";
+  screenContent.appendChild(templateContent);
 
   if (itemArr.length > 20) {
     for (let i = 20; i < itemArr.length; i++) {
