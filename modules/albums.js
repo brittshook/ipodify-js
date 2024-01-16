@@ -18,13 +18,11 @@ export async function getAlbumsByArtist(artist) {
     });
 
     const albumsObj = await response.json();
-
+    const albums = albumsObj.albums.items;
+    return albums;
   } catch (er) {
     console.log("Error fetching albums by artist:", er);
   }
-
-  const albums = albumsObj.albums.items;
-  return albums;
 }
 
 export function getAlbumCover(arr) {
