@@ -21,8 +21,6 @@ export async function getPodcasts() {
   } catch (er) {
     console.log("Error fetching podcasts:", er);
   }
-
-
 }
 
 export async function displayPodcasts() {
