@@ -26,7 +26,6 @@ if (currentToken.access_token) {
 
 setInterval(() => {
   if (currentToken.access_token && currentToken.isExpired()) {
-    console.log("is expired");
     refreshToken()
       .then((token) => currentToken.save(token))
       .catch((er) => console.log("Error refreshing token:", er));
