@@ -2,6 +2,7 @@ export const setIpodColor = (e) => {
   const color = e.currentTarget.className;
   const mainBody = document.querySelector("#main-body");
   const topBody = document.querySelector("#top-body");
+  const bottomBody = document.querySelector("#bottom-body");
   const controls = document.querySelector("#controls svg");
 
   const applyColor = (el) => {
@@ -11,12 +12,11 @@ export const setIpodColor = (e) => {
     el.classList.add(color);
   };
 
-  console.log(color);
   if (color === "gray") {
     controls.style.fill = "#111";
   } else {
     controls.style.fill = "#fff";
   }
 
-  [mainBody, topBody].forEach(applyColor);
+  [mainBody, topBody, bottomBody].forEach(applyColor);
 };
