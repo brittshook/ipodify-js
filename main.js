@@ -1,6 +1,5 @@
 import { currentToken } from "./modules/auth/token.js";
 import { getToken, refreshToken } from "./modules/auth/auth.js";
-import { goToMenu } from "./modules/navigate.js";
 
 const args = new URLSearchParams(window.location.search);
 const code = args.get("code");
