@@ -22,6 +22,9 @@ Currently, the following functionality exists:
     - /auth: A subdirectory contains all the files related to OAuth (utilizing PKCE), including config.js which holds key variables needed during authentication, token.js which contains a token object used to cache access/refresh tokens to local storage, and auth.js which includes functions to handle redirecting to Spotify for user authentication, and handling refresh tokens.
     - topItems.js, user.js, playlists.js, podcasts.js, radio.js: All contain various functions to fetch these items from the Spotify Web API and a function to display them onto the UI
 
+## Screenshot
+![iPodify Home](iPodify-screenshot.png)
+
 ## Next Steps 
 As aforementioned, I plan to built this project out further as a React app. The functionality I plan to add includes:
 - Song playback utilizing the Spotify Web Playback
