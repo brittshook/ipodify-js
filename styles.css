@@ -372,8 +372,7 @@ button:hover:not(#controls button) {
   border-color: #818181;
 }
 
-button:focus,
-button:focus-visible {
+button:focus:not(#controls button) {
   outline: 4px auto #1d4cb9;
 }
 
